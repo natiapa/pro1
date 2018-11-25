@@ -1,3 +1,4 @@
+
 def InputCourse():
     
     File_C=open('courses.txt','a')
