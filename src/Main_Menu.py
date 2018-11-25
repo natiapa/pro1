@@ -1,6 +1,5 @@
 import pro1
 
-
 def Main_Menu():
     print('')
     choice = int(input(''))
