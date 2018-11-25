@@ -128,5 +128,4 @@ def DeleteCourse():
 
 
 
-DeleteCourse()
 
