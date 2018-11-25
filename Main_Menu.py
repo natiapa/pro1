@@ -1,7 +1,11 @@
+import pro1
+
+
 def Main_Menu():
     print('')
     choice = int(input(''))
     if choice==1:
+        InputCourse()
         print('Manager')
     elif choice==2:
         print('Worker')
@@ -9,3 +13,4 @@ def Main_Menu():
         print('Student')
     else:
         print('Invalid Choice')
+Main_Menu()
