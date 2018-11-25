@@ -1,5 +1,9 @@
 import pro1
 import course_resize
+import course_grade_avg
+import GradeAvg
+
+
 def Main_Menu():
     print('')
     choice = int(input(''))

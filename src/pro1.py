@@ -1,4 +1,10 @@
 
+import course_resize
+
+import GradeAvg
+import M_login
+from telnetlib import DO
+
 def InputCourse():
     
     File_C=open('courses.txt','a')
@@ -31,20 +37,22 @@ def InputStudent():
 def M_login():
     print('') 
     print('press 1 to add new student\n press 2 to add new course\n press 3 to delete course\n press 4 to add more places to course\n press 5 for student averages\n')
-    choice = int(input(''))
-    if choice==1:
-        InputStudent()
-    elif choice==2:
-        InputCourse()
-    elif choice==3:
-        DeleteCourse()
-    elif choice==4:
-        Increase_Seats()
-    elif choice==5:
-        Average_Grade()
-    else:
-        print('try again')
-        M_login()
+    choice=-1
+    while(choice!=0):
+        choice = int(input(''))
+        if choice==1:
+            InputStudent()
+        elif choice==2:
+            InputCourse()
+        elif choice==3:
+            M_login.DeleteCourse()
+        elif choice==4:
+            course_resize.Increase_Seats()
+        elif choice==5:
+            GradeAvg.Average_Grades()
+        else:
+            print('try again') 
+M_login()
         
 
 
