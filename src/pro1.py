@@ -1,9 +1,8 @@
 
 import course_resize
-
 import GradeAvg
 import M_login
-from telnetlib import DO
+
 
 def InputCourse():
     
