@@ -1,4 +1,11 @@
 
+<<<<<<< HEAD
+=======
+import course_resize
+import GradeAvg
+import M_login
+
+>>>>>>> 493c993fcc9bc6a1e3e21eb4dff9f42b09cd85c8
 
 def InputCourse():
     

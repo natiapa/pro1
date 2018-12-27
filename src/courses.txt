@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 matt 23 1 13:00
 add 40 4 13:00
 math 20 2 15:00
 python 20 3 21:003 4 2 3
 3 21 331 31
 
+=======
+matt 10 a 13:00-14:00
+add 30 d 13:00
+anan nahs 10 \19
+>>>>>>> 493c993fcc9bc6a1e3e21eb4dff9f42b09cd85c8

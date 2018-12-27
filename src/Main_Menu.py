@@ -11,7 +11,32 @@ def Main_Menu():
     else:
         print('Invalid Choice')
     Main_Menu()
-
+def M_login():
+    print('press 1 to add new student')
+    print('press 2 to add new course')
+    print('press 3 to delete course')
+    print('press 4 to add more places to course')
+    print('press 5 for student averages')
+    print('press 6 to send message')
+    choice=-1
+    while(choice!=0):
+        choice = int(input(''))
+        if choice==1:
+            InputStudent()
+        elif choice==2:
+            InputCourse()
+        elif choice==3:
+            DeleteCourse()
+        elif choice==4:
+            Increase_Seats()
+        elif choice==5:
+            Average_Grades()
+        elif choice==6:
+            Outbox()
+        else:
+            print('try again') 
+        M_login()
+        
 def InputStudent():
     
     File_S=open('students.txt','a')
@@ -22,6 +47,8 @@ def InputStudent():
     File_S.write(input('Enter last name of the student:'))
     File_S.write(' ') 
     File_S.write(input('Enter date of birth:'))
+    File_S.write(' ') 
+    File_S.write(input('Enter subjects and grades of the student:'))
     File_S.write(' ') 
     File_S.write(input('Enter average of the student:'))
     File_S.write('\n')
@@ -37,6 +64,8 @@ def InputCourse():
     File_C.write(input('Enter day of the course'))
     File_C.write(' ') 
     File_C.write(input('Enter hour of the course'))
+    File_C.write('\n') 
+    File_C.write(input('Enter IDs of the students'))
     File_C.write('\n') 
     
 def Increase_Seats():
@@ -107,22 +136,55 @@ def delete_course (nameOfCourse):
 def DeleteCourse():
     nameOfCourse = input("Please enter the name of the course: ")
     delete_course(nameOfCourse)
-def M_login():
-    print('press 1 to add new student\n press 2 to add new course\n press 3 to delete course\n press 4 to add more places to course\n press 5 for student averages\n')
-    choice=-1
-    while(choice!=0):
-        choice = int(input(''))
-        if choice==1:
-            InputStudent()
-        elif choice==2:
-            InputCourse()
-        elif choice==3:
-            DeleteCourse()
-        elif choice==4:
-            Increase_Seats()
-        elif choice==5:
-            Average_Grades()
-        else:
-            print('try again') 
-        M_login()
+    
+def Outbox():
+    File_O=open('outbox.txt','a+')
+    check=input('Enter to whom do you want to send the message:student/worker.')
+    if check=='student':
+        File_Check=open('students.txt','r')
+        id=input('Enter Id of the student:')
+        line=File_Check.readline()
+        element=line.split(' ')
+        while(line):
+            if(element[0]==id):
+                File_O.write(id)
+                File_O.write(' ') 
+                File_O.write(input('Enter the message:'))
+                break    
+            line=File_Check.readline()   
+            element=line.split(' ')
+            print('continue')
+            
+        if(element[0]!= id):
+            print('try again the ID is wrong')
+            Outbox()  
+            File_Check.close()
+            
+    elif check=='worker':
+        File_Check=open('workers.txt','r')
+        id=input('Enter Id of the worker:')
+        line=File_Check.readline()
+        element=line.split(' ')
+        while(line):
+            if(element[0]==id):
+                File_O.write(id)
+                File_O.write(' ') 
+                File_O.write(input('Enter the message:'))
+                break    
+            line=File_Check.readline()   
+            element=line.split(' ')
+            print('continue')
+            
+        if(element[0]!= id):
+            print('try again the ID is wrong')
+            Outbox()  
+            File_Check.close()
+        
+    else:
+        File_O.close()
+        print('try again.')
+        Outbox()    
+    File_O.write('\n')
+    File_O.close()
+
 Main_Menu()
