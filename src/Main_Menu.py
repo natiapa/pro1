@@ -1,15 +1,28 @@
+account = ''
+
 def Main_Menu():
-    print('for manager press 1,for worker press 2, for student press 3')
-    choice = int(input(''))
-    if choice==1:
-        M_login()
-    elif choice==2:
-        W_login()
-    elif choice==3:
-        S_login()
-    else:
-        print('Invalid Choice')
+    print('Login:')
+    ID = input('Enter ID: ')
+    pasw = input('Enter Password ')
+    file = open('M_login.txt','r')
+    flag = True
+    for line in file:
+        l = line.split()
+        if l[0]==ID and l[1].strip()==pasw:
+            global account
+            account = l[0][1:]
+            code = l[0][0]
+            if code == 'm':
+                M_login()
+            if code == 'w':
+                W_login()
+            if code == 's':
+                S_login()
+            flag = False
+    if flag:
+        print('Incorrect ID/Password')
     Main_Menu()
+    
 def M_login():
     print('press 1 to add new student')
     print('press 2 to add new course')
@@ -288,5 +301,50 @@ def Inbox():
         File_O.close()
         print('try again the ID is wrong')
         Inbox() 
-        
+
+def W_Remove_Student():
+    student = input('Enter student to remove: ')
+    course = input('Enter course: ')
+    file = open('courses.txt','r')
+    courses = [line for line in file]
+    file.close()
+    for i in range(len(courses)):
+        crs = courses[i].split(" ")
+        if crs[0]==course:
+            if student in crs:
+                check = W_Confirm_Remove(student,course)
+                if check==0:
+                    print('Request sent')
+                    return False
+                if check==1:
+                    crs.remove(student)
+                    print('Student removed from course')
+                if check==2:
+                    print('Request Denied')
+                    return False
+            courses[i]=" ".join(crs)
+            break
+    file = open("courses.txt",'w')
+    for line in courses:
+        file.write(line)
+    file.close()
+    return True
+
+def W_Confirm_Remove(student,course):
+    file = open('outbox.txt','r')
+    for line in file:
+        l = line.split()
+        if l[0]==account and l[2]=='CONFIRM' and l[3]=='remove' and l[4]==student and l[5]==course:
+            if l[-1]=='APPROVED':
+                file.close()
+                return 1
+            elif l[-1]=='DENIED':
+                file.close()
+                return 2
+        if l[1]==account and l[2]=='CONFIRM' and l[3]=='remove' and l[4]==student and l[5]==course:
+            file.close()
+            return 0
+    file.close()
+    file = open('outbox.txt','a')
+    file.write('{} {} CONFIRM remove {} {}'.format()) 
 Main_Menu()
