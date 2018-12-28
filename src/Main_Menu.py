@@ -377,6 +377,37 @@ def W_Confirm_Remove(student,course):
 def S_Course_SignIn():
     course = input('Enter Course Name: ')
     file = open('courses.txt','r')
-    
+    courses = [line for line in file]
+    file.close()
+    flag = False
+    for i in range(len(courses)):
+        c = courses[i].split()
+        if c[0]==course:
+            if len(c[4:])<c[1]:
+                if account in c[4:]:
+                    print("Already signed up for course")
+                    return False
+                c.append(account)
+                courses[i]=" ".join(c)
+                flag = True
+            else:
+                print("Course at full capacity")
+                return False
+    if not flag:
+        print("Course does not exist")
+        return False
+    file = open("courses.txt",'w')
+    for line in courses:
+        file.write(line)
+    file.close()
+    return True
+
+def S_Average():
+    file = open("students.txt",'r')
+    for line in file:
+        if line.split()[0]==account:
+            print("Average: {}".format(line.split()[-1]))
+            break
+    file.close()
 
 Main_Menu()
