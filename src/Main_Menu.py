@@ -243,7 +243,7 @@ def Outbox():
             if(element[0]==id):
                 File_O.write(id)
                 File_O.write(' ') 
-                File_O.write(input('Enter the your name:'))
+                File_O.write(account)
                 File_O.write(' ') 
                 File_O.write(input('Enter the message:'))
                 break    
@@ -264,7 +264,7 @@ def Outbox():
             if(element[0]==id):
                 File_O.write(id)
                 File_O.write(' ') 
-                File_O.write(input('Enter the your name:'))
+                File_O.write(account)
                 File_O.write(' ') 
                 File_O.write(input('Enter the message:'))
                 break    
@@ -284,21 +284,16 @@ def Outbox():
 
 def Inbox():
     File_O=open('outbox.txt','r')
-    id=input('Enter your ID.')
     line=File_O.readline()
     element=line.split(' ')
     while(line):
-        if(element[0]==id):
+        if(element[0]==account):
             print('to ',element[0],' from ',element[1],'"',' '.join(element[2:]).strip(),'"')
             File_O.close()
             break    
         line=File_O.readline()   
         element=line.split(' ')
             
-    if(element[0]!= id):
-        File_O.close()
-        print('try again the ID is wrong')
-        Inbox() 
 
 def W_Remove_Student():
     W_Print_Remove()
