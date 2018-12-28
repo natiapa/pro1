@@ -190,30 +190,28 @@ def Average_Grades():
         count+=1
         total+=int(line.split(' ')[-1])
     return total/count
-def delete_course (nameOfCourse):
-    fr = open('Courses.txt', 'r')
-    Course = fr.read()
-    lineOfCourse = str(Course).split("\n")
-    i=0
-    line = "start"
-    newtxt = ""
-    while(line[0] != "end"):
-        line = lineOfCourse[i].split(" ")
-        nameOfSamCourse = line[0]
-        if(nameOfCourse != nameOfSamCourse):
-            newtxt = newtxt + lineOfCourse[i]+"\n"
-        i=i+1
+ 
 
-    fr.close()
+def M_Delete_Course():
+    course = input("Please enter the name of the course: ")
+    file = open('courses.txt','r')
+    courses = [line for line in file]
+    file.close()
+    flag = False
+    for i in range(len(courses)):
+        if courses[i].split()[0]==course:
+            flag=True
+            del courses[i]
+            break
+    if not flag:
+        print("Course does not exist")
+        return False
+    file = open("courses.txt",'w')
+    for line in courses:
+        file.write(line)
+    file.close()
+    return True
 
-    fw = open('Courses.txt', 'w')
-    fw.write(newtxt)
-    fw.close()
-
-
-def DeleteCourse():
-    nameOfCourse = input("Please enter the name of the course: ")
-    delete_course(nameOfCourse)
     
 def Show_students_details():
     check=input('Enter the ID of the student of whom you would like to see details.')
