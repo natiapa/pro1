@@ -430,5 +430,19 @@ def S_View_Price():
         if line.split()[0] in courses:
             print(line.strip())
     file.close()
-
+    
+def S_View_Sheet():
+    file = open("students.txt","r")
+    courses = []
+    for line in file:
+        if line.split()[0]==account:
+            courses = line.split()[4:-2:2]
+    file.close()
+    file = open("course.txt","r")
+    for line in file:
+        if line.split()[0] in courses:
+            if len(line.split()>2):
+                print(line.split()[0],line.split()[3],line.split()[2])
+    file.close()
+    
 Main_Menu()
