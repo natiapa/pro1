@@ -445,4 +445,38 @@ def S_View_Sheet():
                 print(line.split()[0],line.split()[3],line.split()[2])
     file.close()
     
+def W_Add_To_Exam():
+    student = input("Enter Student Name: ")
+    course = input("Enter Course Name: ")
+    if not W_Confirm_Exam_Request(student,course):
+        print("Invalid Request")
+        return False
+    file = open("exams.txt",'r')
+    exams = [line for line in file]
+    file.close()
+    for i in range(len(exams)):
+        e = exams[i].split()
+        if e[0]==course:
+            if e[1]<len(e[3:]):
+                e.append(student)
+                exams[i] = " ".join(e)
+            else:
+                print("Exam is at full capacity")
+                return False
+    file = open("exams.txt",'w')
+    for line in exams:
+        file.write(line)
+    file.close()
+    return True
+    
+def W_Confirm_Exam_Request(student,course):
+    file = open('outbox.txt','r')
+    for line in file:
+        l = line.split()
+        if l[0]==account and l[1]==student and l[2]=='CONFIRM' and l[3]=='remove' and l[5]==course:
+            file.close()
+            return True
+    file.close()
+    return False
+    
 Main_Menu()
