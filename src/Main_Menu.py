@@ -278,7 +278,7 @@ def Inbox():
     element=line.split(' ')
     while(line):
         if(element[0]==id):
-            print('to ',element[0],' from ',element[1],' '.join(element[2:]).strip())
+            print('to ',element[0],' from ',element[1],'"',' '.join(element[2:]).strip(),'"')
             File_O.close()
             break    
         line=File_O.readline()   
