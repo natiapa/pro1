@@ -40,7 +40,7 @@ def M_login():
         elif choice==2:
             InputCourse()
         elif choice==3:
-            DeleteCourse()
+            M_Delete_Course()
         elif choice==4:
             Increase_Seats()
         elif choice==5:
@@ -422,4 +422,18 @@ def W_Course_Average():
         return False
     print("{0} Average: {1:.2f}".format(course,s/c))
     return True
+
+def S_View_Price():
+    file = open("students.txt","r")
+    courses = []
+    for line in file:
+        if line.split()[0]==account:
+            courses = line.split()[4:-2:2]
+    file.close()
+    file = open("budget.txt","r")
+    for line in file:
+        if line.split()[0] in courses:
+            print(line.strip())
+    file.close()
+
 Main_Menu()

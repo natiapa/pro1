@@ -1,0 +1,10 @@
+maths 1000
+science 1200
+english 1000
+commerce 1200
+physics 1500
+chemistry 1400
+electronics 1300
+calculus 1500
+algebgra 1400
+coding 1300

@@ -1,1 +1,10 @@
 maths 25 13:00-14:00 sunday 111111111 222222222 333333333 
+science 20 10:00-13:00 monday 444444444 555555555 666666666
+english 10
+commerce 12
+physics 15
+chemistry 14
+electronics 13
+calculus 15
+algebgra 14
+coding 13
