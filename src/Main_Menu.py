@@ -409,5 +409,19 @@ def S_Average():
             print("Average: {}".format(line.split()[-1]))
             break
     file.close()
-
+    
+def W_Course_Average():
+    course = input("Enter Course Name:")
+    file = open("students.txt",'r')
+    s,c = 0,0
+    for line in file:
+        l = line.split()
+        if course in l:
+            s+=l[l.index(course)+1]
+            c+=1
+    if c==0:
+        print("Course does not exist or no students have signed up")
+        return False
+    print("{0} Average: {1:.2f}".format(course,s/c))
+    return True
 Main_Menu()
