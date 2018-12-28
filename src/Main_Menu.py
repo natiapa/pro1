@@ -303,8 +303,12 @@ def Inbox():
         Inbox() 
 
 def W_Remove_Student():
+    W_Print_Remove()
     student = input('Enter student to remove: ')
     course = input('Enter course: ')
+    if not W_Confirm_Remove_Request(student,course):
+        print('Request does not exists')
+        return False
     file = open('courses.txt','r')
     courses = [line for line in file]
     file.close()
@@ -330,8 +334,27 @@ def W_Remove_Student():
     file.close()
     return True
 
+def W_Print_Remove():
+    file = open('outbox.txt','r')
+    for line in file:
+        l = line.split()
+        if l[0]==account  and l[2]=='CONFIRM' and l[3]=='remove':
+            print(line)
+    file.close()
+    
+def W_Confirm_Remove_Request(student,course):
+    file = open('outbox.txt','r')
+    for line in file:
+        l = line.split()
+        if l[0]==account and l[1]==student and l[2]=='CONFIRM' and l[3]=='remove' and l[5]==course:
+            file.close()
+            return True
+    file.close()
+    return False
+
 def W_Confirm_Remove(student,course):
     file = open('outbox.txt','r')
+    flag = False
     for line in file:
         l = line.split()
         if l[0]==account and l[2]=='CONFIRM' and l[3]=='remove' and l[4]==student and l[5]==course:
@@ -342,9 +365,18 @@ def W_Confirm_Remove(student,course):
                 file.close()
                 return 2
         if l[1]==account and l[2]=='CONFIRM' and l[3]=='remove' and l[4]==student and l[5]==course:
-            file.close()
-            return 0
+            flag = True
     file.close()
+    if flag:
+        return 0
     file = open('outbox.txt','a')
-    file.write('{} {} CONFIRM remove {} {}'.format()) 
+    file.write('manager {} CONFIRM remove {} {}'.format(account,student,course))
+    file.close()
+    return 0
+
+def S_Course_SignIn():
+    course = input('Enter Course Name: ')
+    file = open('courses.txt','r')
+    
+
 Main_Menu()
