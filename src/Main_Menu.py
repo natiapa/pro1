@@ -433,6 +433,7 @@ def S_View_Price():
         if line.split()[0] in courses:
             print(line.strip())
     file.close()
+<<<<<<< HEAD
 def Change_Budget():
     check=input('Enter the name of the course you would like to the change budget of.')
     File_O=open('courses.txt','r')
@@ -496,4 +497,21 @@ def Print_budget():
         else:
             line=File_O.readline()
             element=line.split(' ')
+=======
+    
+def S_View_Sheet():
+    file = open("students.txt","r")
+    courses = []
+    for line in file:
+        if line.split()[0]==account:
+            courses = line.split()[4:-2:2]
+    file.close()
+    file = open("course.txt","r")
+    for line in file:
+        if line.split()[0] in courses:
+            if len(line.split()>2):
+                print(line.split()[0],line.split()[3],line.split()[2])
+    file.close()
+    
+>>>>>>> 877be0a70c32b4cf01e1bd2fbd396840637fe282
 Main_Menu()
