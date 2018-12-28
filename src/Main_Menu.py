@@ -32,6 +32,7 @@ def M_login():
     print('press 6 to send message')
     print('press 7 to check messages')
     print('press 8 to see students details')
+    print('press 9 to change the budget')
     choice=-1
     while(choice!=0):
         choice = int(input(''))
@@ -51,6 +52,8 @@ def M_login():
             Inbox()
         elif choice==8:
             Show_students_details()
+        elif choice==9:
+            Change_Budget()
         else:
             print('try again') 
         M_login()
@@ -60,7 +63,7 @@ def W_login():
     print('press 2 to ')
     print('press 3 to ')
     print('press 4 to ')
-    print('press 5 for ')
+    print('press 5 to see course budget')
     print('press 6 to send message')
     print('press 7 to check messages')
     print('press 8 to see students details')
@@ -73,10 +76,10 @@ def W_login():
             
         elif choice==3:
             
-        elif choice==4:
+        elif choice==4:"""
             
-        elif choice==5:"""
-        
+        if choice==5:
+            Print_budget()
         if choice==6:
             Outbox()
         elif choice == 7:
@@ -430,5 +433,67 @@ def S_View_Price():
         if line.split()[0] in courses:
             print(line.strip())
     file.close()
-
+def Change_Budget():
+    check=input('Enter the name of the course you would like to the change budget of.')
+    File_O=open('courses.txt','r')
+    line=File_O.readline()
+    element=line.split(' ')
+    while(line):
+        if(element[0]==check):
+            test=1
+            File_O.close()
+            break
+        else:
+            line=File_O.readline()
+            element=line.split(' ')
+            test=0
+    if(test==0):
+        print('The course name is invalid try again.')
+        File_O.close()
+        Change_Budget()
+    newprice=input('Enter the new budget for this course.')
+    file = open("budget.txt",'r')
+    b = [line for line in file]
+    file.close()
+    for i in range(len(b)):
+        temp = b[i].split(" ")
+        if(temp[0]==check):
+            temp[1]=newprice+'\n'
+            b[i]=" ".join(temp)
+            break
+        
+    print(temp)  
+    file = open("budget.txt",'w')
+    for line in b:
+        file.write(line)
+    file.close()
+def Print_budget():
+    check=input('Enter the name of the course you would like to the check budget of.')
+    File_O=open('courses.txt','r')
+    line=File_O.readline()
+    element=line.split(' ')
+    while(line):
+        if(element[0]==check):
+            test=1
+            File_O.close()
+            break
+        else:
+            line=File_O.readline()
+            element=line.split(' ')
+            test=0
+    if(test==0):
+        print('The course name is invalid try again.')
+        File_O.close()
+        Print_budget()
+    File_O=open('budget.txt','r')
+    line=File_O.readline()
+    element=line.split(' ')
+    while(line):
+        if(element[0]==check):
+            print(line)
+            File_O.close()
+            break
+        else:
+            line=File_O.readline()
+            element=line.split(' ')
 Main_Menu()
