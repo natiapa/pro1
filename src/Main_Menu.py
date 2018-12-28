@@ -3,11 +3,10 @@ def Main_Menu():
     choice = int(input(''))
     if choice==1:
         M_login()
-        print('Manager')
     elif choice==2:
-        print('Worker')
+        W_login()
     elif choice==3:
-        print('Student')
+        S_login()
     else:
         print('Invalid Choice')
     Main_Menu()
@@ -18,6 +17,8 @@ def M_login():
     print('press 4 to add more places to course')
     print('press 5 for student averages')
     print('press 6 to send message')
+    print('press 7 to check messages')
+    print('press 8 to see students details')
     choice=-1
     while(choice!=0):
         choice = int(input(''))
@@ -33,10 +34,74 @@ def M_login():
             Average_Grades()
         elif choice==6:
             Outbox()
+        elif choice==7:
+            Inbox()
+        elif choice==8:
+            Show_students_details()
         else:
             print('try again') 
         M_login()
         
+def W_login():
+    print('press 1 to ')
+    print('press 2 to ')
+    print('press 3 to ')
+    print('press 4 to ')
+    print('press 5 for ')
+    print('press 6 to send message')
+    print('press 7 to check messages')
+    print('press 8 to see students details')
+    choice=-1
+    while(choice!=0):
+        choice = int(input(''))
+        """if choice==1:
+            
+        elif choice==2:
+            
+        elif choice==3:
+            
+        elif choice==4:
+            
+        elif choice==5:"""
+        
+        if choice==6:
+            Outbox()
+        elif choice == 7:
+            Inbox()
+        elif choice==8:
+            Show_students_details()
+        else:
+            print('try again') 
+        W_login()
+        
+def S_login():
+    print('press 1 to ')
+    print('press 2 to ')
+    print('press 3 to ')
+    print('press 4 to ')
+    print('press 5 for ')
+    print('press 6 to send message')
+    print('press 7 to check messages')
+    choice=-1
+    while(choice!=0):
+        choice = int(input(''))
+        """if choice==1:
+            
+        elif choice==2:
+            
+        elif choice==3:
+            
+        elif choice==4:
+            
+        elif choice==5:
+        """
+        if choice==6:
+            Outbox()
+        elif choice == 7:
+            Inbox()
+        else:
+            print('try again') 
+        S_login()
 def InputStudent():
     
     File_S=open('students.txt','a')
@@ -137,6 +202,24 @@ def DeleteCourse():
     nameOfCourse = input("Please enter the name of the course: ")
     delete_course(nameOfCourse)
     
+def Show_students_details():
+    check=input('Enter the ID of the student of whom you would like to see details.')
+    File_Check=open('students.txt','r')
+    line=File_Check.readline()
+    element=line.split(' ')
+    while(line):
+        if(element[0]==check):
+            print(line)
+            break    
+        line=File_Check.readline()   
+        element=line.split(' ')
+            
+    if(element[0]!= check):
+        print('try again the ID is wrong')
+        File_Check.close()
+        Outbox()  
+    File_Check.close()   
+        
 def Outbox():
     File_O=open('outbox.txt','a+')
     check=input('Enter to whom do you want to send the message:student/worker.')
@@ -149,16 +232,17 @@ def Outbox():
             if(element[0]==id):
                 File_O.write(id)
                 File_O.write(' ') 
+                File_O.write(input('Enter the your name:'))
+                File_O.write(' ') 
                 File_O.write(input('Enter the message:'))
                 break    
             line=File_Check.readline()   
             element=line.split(' ')
-            print('continue')
             
         if(element[0]!= id):
-            print('try again the ID is wrong')
-            Outbox()  
+            print('try again the ID is wrong') 
             File_Check.close()
+            Outbox() 
             
     elif check=='worker':
         File_Check=open('workers.txt','r')
@@ -169,22 +253,40 @@ def Outbox():
             if(element[0]==id):
                 File_O.write(id)
                 File_O.write(' ') 
+                File_O.write(input('Enter the your name:'))
+                File_O.write(' ') 
                 File_O.write(input('Enter the message:'))
                 break    
             line=File_Check.readline()   
             element=line.split(' ')
-            print('continue')
             
         if(element[0]!= id):
-            print('try again the ID is wrong')
-            Outbox()  
+            print('try again the ID is wrong')  
             File_Check.close()
+            Outbox() 
         
     else:
-        File_O.close()
         print('try again.')
         Outbox()    
     File_O.write('\n')
     File_O.close()
 
+def Inbox():
+    File_O=open('outbox.txt','r')
+    id=input('Enter your ID.')
+    line=File_O.readline()
+    element=line.split(' ')
+    while(line):
+        if(element[0]==id):
+            print('to ',element[0],' from ',element[1],'"',' '.join(element[2:]).strip(),'"')
+            File_O.close()
+            break    
+        line=File_O.readline()   
+        element=line.split(' ')
+            
+    if(element[0]!= id):
+        File_O.close()
+        print('try again the ID is wrong')
+        Inbox() 
+        
 Main_Menu()
