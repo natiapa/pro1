@@ -62,7 +62,7 @@ def W_login():
     print('press 1 to ')
     print('press 2 to ')
     print('press 3 to ')
-    print('press 4 to ')
+    print('press 4 to open complaints in Oscar')
     print('press 5 to see course budget')
     print('press 6 to send message')
     print('press 7 to check messages')
@@ -74,11 +74,11 @@ def W_login():
             
         elif choice==2:
             
-        elif choice==3:
+        elif choice==3:"""
             
-        elif choice==4:"""
-            
-        if choice==5:
+        if choice==4:
+            Open_Bugs()
+        elif choice==5:
             Print_budget()
         if choice==6:
             Outbox()
@@ -134,6 +134,12 @@ def InputStudent():
     File_S.write(input('Enter average of the student:'))
     File_S.write('\n')
     
+def Open_Bugs():
+    File_O=open('bugs.txt','a+')
+    File_O.write(input('write the name of the person with the problem.'))
+    File_O.write(input('write the complaint'))
+    File_O.close()
+Open_Bugs()
 def InputCourse():
     
     File_C=open('courses.txt','a')
@@ -433,7 +439,20 @@ def S_View_Price():
         if line.split()[0] in courses:
             print(line.strip())
     file.close()
-<<<<<<< HEAD
+def S_View_Sheet():
+    file = open("students.txt","r")
+    courses = []
+    for line in file:
+        if line.split()[0]==account:
+            courses = line.split()[4:-2:2]
+    file.close()
+    file = open("course.txt","r")
+    for line in file:
+        if line.split()[0] in courses:
+            if len(line.split()>2):
+                print(line.split()[0],line.split()[3],line.split()[2])
+    file.close()
+    
 def Change_Budget():
     check=input('Enter the name of the course you would like to the change budget of.')
     File_O=open('courses.txt','r')
@@ -497,21 +516,4 @@ def Print_budget():
         else:
             line=File_O.readline()
             element=line.split(' ')
-=======
-    
-def S_View_Sheet():
-    file = open("students.txt","r")
-    courses = []
-    for line in file:
-        if line.split()[0]==account:
-            courses = line.split()[4:-2:2]
-    file.close()
-    file = open("course.txt","r")
-    for line in file:
-        if line.split()[0] in courses:
-            if len(line.split()>2):
-                print(line.split()[0],line.split()[3],line.split()[2])
-    file.close()
-    
->>>>>>> 877be0a70c32b4cf01e1bd2fbd396840637fe282
 Main_Menu()
