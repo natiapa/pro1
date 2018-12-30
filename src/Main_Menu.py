@@ -33,6 +33,7 @@ def M_login():
     print('press 7 to check messages')
     print('press 8 to see students details')
     print('press 9 to change the budget')
+    print('press 0 to EXIT')
     choice=-1
     while(choice!=0):
         choice = int(input(''))
@@ -54,70 +55,81 @@ def M_login():
             Show_students_details()
         elif choice==9:
             Change_Budget()
+        elif choice==0:
+            return 0
         else:
             print('try again') 
         M_login()
-        
+    
+    
 def W_login():
-    print('press 1 to ')
-    print('press 2 to ')
-    print('press 3 to ')
+    print('press 1 to delete a student from course')
+    print('press 2 to add student to exam')
+    print('press 3 to add an exam')
     print('press 4 to open complaints in Oscar')
     print('press 5 to see course budget')
     print('press 6 to send message')
     print('press 7 to check messages')
     print('press 8 to see students details')
+    print('press 9 for student averages')
+    print('press 0 to EXIT')
     choice=-1
     while(choice!=0):
         choice = int(input(''))
-        """if choice==1:
-            
+        if choice==1:
+            W_Remove_Student()
         elif choice==2:
-            
-        elif choice==3:"""
-            
-        if choice==4:
+            W_Add_To_Exam()
+            """"""""""""""""""""
+        elif choice==4:
             Open_Bugs()
         elif choice==5:
             Print_budget()
-        if choice==6:
+        elif choice==6:
             Outbox()
         elif choice == 7:
             Inbox()
         elif choice==8:
             Show_students_details()
+        elif choice==9:
+            Average_Grades()
+        elif choice==0:
+            return 0
         else:
             print('try again') 
         W_login()
-        
+    
+       
 def S_login():
-    print('press 1 to ')
-    print('press 2 to ')
-    print('press 3 to ')
-    print('press 4 to ')
-    print('press 5 for ')
-    print('press 6 to send message')
-    print('press 7 to check messages')
+    print('press 1 to register to course')
+    print('press 2 to see courses prices')
+    print('press 3 to see my schedule')
+    print('press 4 to see my average')
+    print('press 5 to send message')
+    print('press 6 to check messages')
+    print('press 0 to EXIT')
     choice=-1
     while(choice!=0):
         choice = int(input(''))
-        """if choice==1:
-            
+        if choice==1:
+            S_Course_SignIn()
         elif choice==2:
-            
+            Print_budget()
         elif choice==3:
-            
+            S_View_Sheet()
         elif choice==4:
-            
+            S_Average()
         elif choice==5:
-        """
-        if choice==6:
             Outbox()
-        elif choice == 7:
+        elif choice == 6:
             Inbox()
+        elif choice==0:
+            return 0
         else:
             print('try again') 
         S_login()
+   
+        
 def InputStudent():
     
     File_S=open('students.txt','a')
@@ -139,7 +151,7 @@ def Open_Bugs():
     File_O.write(input('write the name of the person with the problem.'))
     File_O.write(input('write the complaint'))
     File_O.close()
-Open_Bugs()
+
 def InputCourse():
     
     File_C=open('courses.txt','a')
