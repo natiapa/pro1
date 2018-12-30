@@ -80,7 +80,8 @@ def W_login():
             W_Remove_Student()
         elif choice==2:
             W_Add_To_Exam()
-            """"""""""""""""""""
+        elif choice==3:
+            W_Add_Exams()
         elif choice==4:
             Open_Bugs()
         elif choice==5:
@@ -129,6 +130,17 @@ def S_login():
             print('try again') 
         S_login()
    
+def W_Add_Exams():
+    File_E=open('exams','a+')
+    File_E.write(input('Which exam do you want to add?'))
+    File_E.write(' ')
+    len=input('Number of capacity.')
+    File_E.write(len)
+    File_E.write(' ')
+    File_E.write(input('Id of the students'))
+    File_E.write('\n')
+    File_E.close()
+    
         
 def InputStudent():
     
