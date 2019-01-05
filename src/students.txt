@@ -1,2 +1,15 @@
-111111111 Adar Cohen 1/1/1995 maths 70 english 60 science 80 comerce 90 average 75
-222222222 Sarah Beni 20/2/1994 physics 60 algebgra 60 calculus 60 average 60
+301584218 Adar Cohen 1/1/1995 maths 70 english 60 science 80 commerce 90 average 75
+305184255 Sarah Beni 20/2/1994 physics 60 algebgra 60 calculus 60 average 60
+351554820 Shalom Cohen 23/4/1993 coding 75 electronics 85 chemistry 80 maths 80 average 80
+205985225 Aviel Haim 30/3/1990 maths 70 science 80 electronics 80 algebgra 90 average 80
+301528474 Arthur takuzi 2/9/1989 science 85 english 90 calculus 75 algebgra 90 average 85
+306947996 Tomer faim 15/7/1998 maths 85 science 90 chemistry 80 coding 85 average 85
+231522974 Mati Marom 21/9/1995 maths 80 science 95 chemistry 80 coding 75 average 80
+321230203 Orel Sander 29/3/1994 science 80 english 85 chemistry 75 coding  85 average 85
+200366978 elad dayn 3/3/1994 science 70 commerce 80 chemistry 80 coding 70 average 75
+205584719 yahav shay 4/8/1993 maths 70english 85 commerce 75 calculus 90 average 80
+200963589 Sarht Izhak 18/8/1994 commerce 80 physics 90 electronics 85 average 85
+305885965 Kfir Kashan 19/5/1996 commerce 80 physics 90 electronics 90 algebgra 80 average 85
+203366187 Raz Zari 25/7/1992 maths 85 english 90 physics 85 calculus 80 algebgra 85 average 85
+206898971 Omer Grin 3/7/1992 english 75 commerce 70 physics 80 calculus 75 average 75
+208985175 Ohad Shir 6/9/1994 maths 90 commerce 90 chemistry 85 electronics 95 average 90
