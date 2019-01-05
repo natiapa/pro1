@@ -33,6 +33,7 @@ def M_login():
     print('press 7 to check messages')
     print('press 8 to see students details')
     print('press 9 to change the budget')
+    print('press10 to see requests')
     print('press 0 to EXIT')
     choice=-1
     while(choice!=0):
@@ -57,6 +58,8 @@ def M_login():
             Change_Budget()
         elif choice==0:
             return 0
+        elif choice==10:
+            return AcceptorDeny()
         else:
             print('try again') 
         M_login()
@@ -108,6 +111,9 @@ def S_login():
     print('press 4 to see my average')
     print('press 5 to send message')
     print('press 6 to check messages')
+    print('press 7 to ask for special exam date')
+    print('press 8 to ask for removing from course')
+    print('press 9 to ask for special request to join a no course with no vacancy. ')
     print('press 0 to EXIT')
     choice=-1
     while(choice!=0):
@@ -124,6 +130,12 @@ def S_login():
             Outbox()
         elif choice == 6:
             Inbox()
+        elif choice==7:
+            SpecialExam()
+        elif choice==8:
+            S_remove_course()
+        elif choice==9:
+            S_no_vacancy()
         elif choice==0:
             return 0
         else:
@@ -131,7 +143,7 @@ def S_login():
         S_login()
    
 def W_Add_Exams():
-    File_E=open('exams','a+')
+    File_E=open('exams.txt','a')
     File_E.write(input('Which exam do you want to add?'))
     File_E.write(' ')
     len=input('Number of capacity.')
@@ -155,6 +167,7 @@ def InputStudent():
     File_S.write(' ') 
     File_S.write(input('Enter subjects and grades of the student:'))
     File_S.write(' ') 
+    File_S.write('average ')
     File_S.write(input('Enter average of the student:'))
     File_S.write('\n')
     
@@ -167,6 +180,7 @@ def Open_Bugs():
 def InputCourse():
     
     File_C=open('courses.txt','a')
+    File_C.write('\n') 
     Name_C=input('Enter Name of course:\n')
     File_C.write(Name_C)
     File_C.write(' ') 
@@ -175,9 +189,38 @@ def InputCourse():
     File_C.write(input('Enter day of the course'))
     File_C.write(' ') 
     File_C.write(input('Enter hour of the course'))
-    File_C.write('\n') 
+    File_C.write(' ') 
     File_C.write(input('Enter IDs of the students'))
-    File_C.write('\n') 
+    File_C.close()
+
+def SpecialExam():
+    ask=input('Which exam do you want a special date for?')
+    File_O=open('outbox.txt','a+')
+    File_O.write('\n')
+    File_O.write(input('Enter your ID'))
+    File_O.write(' ')
+    File_O.write(ask)
+    File_O.write('Request for special exam.')
+    File_O.close()
+
+def S_remove_course():
+    ask=input('Which course do you want a remove?')
+    File_O=open('outbox.txt','a+')
+    File_O.write('\n')
+    File_O.write(input('Enter your ID'))
+    File_O.write(' ')
+    File_O.write(ask)
+    File_O.write('Your request.')
+    File_O.close()    
+def S_no_vacancy():
+    ask=input('Which course do you want a join?')
+    File_O=open('outbox.txt','a+')
+    File_O.write('\n')
+    File_O.write(input('Enter your ID'))
+    File_O.write(' ')
+    File_O.write(ask)
+    File_O.write('Enter your request.')
+    File_O.close()
     
 def Increase_Seats():
     course = input("Enter course name: ")
@@ -222,7 +265,7 @@ def Average_Grades():
     for line in file:
         count+=1
         total+=int(line.split(' ')[-1])
-    return total/count
+    print("The average of Students in the college is: ",total/count,"\n")
  
 
 def M_Delete_Course():
@@ -263,10 +306,10 @@ def Show_students_details():
         File_Check.close()
         Outbox()  
     File_Check.close()   
-        
+
 def Outbox():
     File_O=open('outbox.txt','a+')
-    check=input('Enter to whom do you want to send the message:student/worker.')
+    check=input('\nEnter to whom do you want to send the message:student/worker.')
     if check=='student':
         File_Check=open('students.txt','r')
         id=input('Enter Id of the student:')
@@ -510,7 +553,34 @@ def W_Confirm_Exam_Request(student,course):
             return True
     file.close()
     return False
-    
+
+def AcceptorDeny():
+    File_Check=open('outbox.txt','r')
+    line=File_Check.readline()
+    element=line.split(' ')
+    while(line):
+        if(element[0]=='remove'):
+            break    
+        line=File_Check.readline()   
+        element=line.split(' ')
+    print('Request:',line)
+    File_Check.close()
+    print(line)
+    File_O=open('outbox.txt','a+')
+    answer=input('To confirm press Y to deny press N.')
+    if answer=='y' or answer=='Y':
+        File_O.write('\n')
+        File_O.write(line+' CONFIRM')
+    elif answer=='n' or answer=='N':
+        File_O.write('\n')
+        File_O.write(line+' DENIED')
+    else:
+        File_O.close()
+        print('try again.')
+        AcceptorDeny()
+    File_O.close()
+    M_login()
+       
 def Change_Budget():
     check=input('Enter the name of the course you would like to the change budget of.')
     File_O=open('courses.txt','r')

@@ -1,3 +1,2 @@
-222222222
 111111111 Adar Cohen 1/1/1995 maths 70 english 60 science 80 comerce 90 average 75
- 
+222222222 Sarah Beni 20/2/1994 physics 60 algebgra 60 calculus 60 average 60
