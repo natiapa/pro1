@@ -1,6 +1,7 @@
 account = ''
 
 def Main_Menu():
+    print('************WELCOME TO OSCAR!*************')
     print('Login:')
     ID = input('Enter ID: ')
     pasw = input('Enter Password ')
