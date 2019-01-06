@@ -170,7 +170,8 @@ def InputStudent():
     File_S.write('average ')
     File_S.write(input('Enter average of the student:'))
     File_S.write('\n')
-    
+
+
 def Open_Bugs():
     File_O=open('bugs.txt','a+')
     File_O.write(input('write the name of the person with the problem.'))
@@ -212,6 +213,8 @@ def S_remove_course():
     File_O.write(ask)
     File_O.write('Your request.')
     File_O.close()    
+    
+    
 def S_no_vacancy():
     ask=input('Which course do you want a join?')
     File_O=open('outbox.txt','a+')
@@ -265,8 +268,17 @@ def Average_Grades():
     for line in file:
         count+=1
         total+=int(line.split(' ')[-1])
+    isPositive(total/count)
     print("The average of Students in the college is: ",total/count,"\n")
- 
+    file.close()
+    return total/count
+
+#################Unit Test 1####################
+def isPositive(avg):
+    if avg<0:
+        return False
+    else:
+        return True
 
 def M_Delete_Course():
     course = input("Please enter the name of the course: ")
@@ -615,6 +627,14 @@ def Change_Budget():
     for line in b:
         file.write(line)
     file.close()
+    
+###################unit test 2################
+def isBudget(newP):
+    if newP>=1000:
+        return True
+    else:
+        return False
+    
 def Print_budget():
     check=input('Enter the name of the course you would like to the check budget of.')
     File_O=open('courses.txt','r')
@@ -644,4 +664,5 @@ def Print_budget():
         else:
             line=File_O.readline()
             element=line.split(' ')
-Main_Menu()
+if __name__ == '__main__':
+    Main_Menu()
