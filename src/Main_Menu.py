@@ -525,7 +525,7 @@ def S_View_Sheet():
         if line.split()[0]==account:
             courses = line.split()[4:-2:2]
     file.close()
-    file = open("course.txt","r")
+    file = open("courses.txt","r")
     for line in file:
         if line.split()[0] in courses:
             if len(line.split()>2):
