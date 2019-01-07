@@ -1,5 +1,5 @@
 account = ''
-sarit
+lalala
 def Main_Menu():
     print('************WELCOME TO OSCAR!*************')
     print('Login:')
