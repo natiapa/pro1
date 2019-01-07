@@ -379,10 +379,10 @@ def Inbox():
         if(element[0]==account):
             print('to ',element[0],' from ',element[1],'"',' '.join(element[2:]).strip(),'"')
             File_O.close()
-            break    
+            return    
         line=File_O.readline()   
         element=line.split(' ')
-            
+    print("You have no messages.")
 
 def W_Remove_Student():
     W_Print_Remove()
