@@ -62,7 +62,7 @@ def M_login():
             return AcceptorDeny()
         else:
             print('try again') 
-        M_login()
+        Main_Menu()
     
     
 def W_login():
@@ -101,7 +101,7 @@ def W_login():
             return 0
         else:
             print('try again') 
-        W_login()
+        Main_Menu()
     
        
 def S_login():
@@ -140,7 +140,7 @@ def S_login():
             return 0
         else:
             print('try again') 
-        S_login()
+        Main_Menu()
    
 def W_Add_Exams():
     File_E=open('exams.txt','a')
@@ -591,7 +591,7 @@ def AcceptorDeny():
         print('try again.')
         AcceptorDeny()
     File_O.close()
-    M_login()
+    
        
 def Change_Budget():
     check=input('Enter the name of the course you would like to the change budget of.')

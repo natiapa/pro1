@@ -1,4 +1,4 @@
-maths 1000
+maths 1500
 science 1200
 english 1000
 commerce 1200
